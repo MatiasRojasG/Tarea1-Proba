@@ -1,0 +1,37 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed May 13 00:02:00 2020
+
+@author: usuario
+"""
+
+#Pregunta 1
+import scipy.stats as ss
+import numpy as np
+import matplotlib.pyplot as plt
+print("Parte I")
+X = ss.norm(25,2) #Funcion
+May=X.sf(22.5) #prob mayor a 22.5
+TotaldeMay=round(400*May) #358
+TotaldeMen=round(400*(1-May)) #42
+print("La probabilidad de que se obtengan manzanas con un diametro mayor a 22.5cm es",round(May*100), "%")
+print("Es decir, de 400 manzanas se obtendran aprox", TotaldeMay, "mayores y",TotaldeMen, "menores a un diametro de 22.5 cm")
+print("De aqui, se calcula un aprox de",228*TotaldeMay,"por las mayores, y",200*TotaldeMen,"por las menores")
+print("Es decir, un total de", 228*TotaldeMay+200*TotaldeMen,"cm cubicos, o",(228*TotaldeMay+200*TotaldeMen)*0.001,"Litros.")
+
+x = np.arange(X.ppf(0.01),X.ppf(0.99))
+plt.plot(x,X.pdf(x),"r")
+print("Gráfico de la función")
+plt.show()
+
+print(" ")
+print(" ")
+print(" ")
+
+print("Parte II")
+
+
+
+
+
