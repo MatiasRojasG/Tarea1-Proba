@@ -67,18 +67,6 @@ print("Debo calcular la probabilidad de que Z sea mayor a 3, y para eso hago 1-P
 result=1-(Poisson(3,0)+Poisson(3,1)+Poisson(3,2)+Poisson(3,3))
 print("La probabilidad de que se expriman mas de 3 manzanas es de",round(result*100),"%")
 
-# Graficando Poisson
-mu =  3 # parametro de forma 
-poisson = stats.poisson(mu) # Distribución
-x = np.arange(poisson.ppf(0.01),
-              poisson.ppf(0.99))
-fmp = poisson.pmf(x) # Función de Masa de Probabilidad
-plt.plot(x, fmp, '--')
-plt.vlines(x, 0, fmp, colors='b', lw=5, alpha=0.5)
-plt.title('Distribución Poisson')
-plt.ylabel('probabilidad')
-plt.xlabel('valores')
-plt.show()
 
 
 
