@@ -10,14 +10,16 @@ Created on Wed May 13 00:02:00 2020
 import scipy.stats as ss
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.stats import poisson, expon
 print("Parte I")
+print("a)")
 X = ss.norm(25,2) #Funcion
 May=X.sf(22.5) #prob mayor a 22.5
 TotaldeMay=round(400*May) #358
 TotaldeMen=round(400*(1-May)) #42
 print("La probabilidad de que se obtengan manzanas con un diametro mayor a 22.5cm es",round(May*100), "%")
 print("Es decir, de 400 manzanas se obtendran aprox", TotaldeMay, "mayores y",TotaldeMen, "menores a un diametro de 22.5 cm")
-print("De aqui, se calcula un aprox de",228*TotaldeMay,"por las mayores, y",200*TotaldeMen,"por las menores")
+print("De aqui, se calcula un aprox de",228*TotaldeMay,"cm cébicos por las mayores, y",200*TotaldeMen,"cm cúbicos por las menores")
 print("Es decir, un total de", 228*TotaldeMay+200*TotaldeMen,"cm cubicos, o",(228*TotaldeMay+200*TotaldeMen)*0.001,"Litros.")
 
 x = np.arange(X.ppf(0.01),X.ppf(0.99))
@@ -27,9 +29,70 @@ plt.show()
 
 print(" ")
 print(" ")
-print(" ")
+print("b)") #No entiendo el enunciado xd
 
+
+
+
+
+
+
+
+ 
+
+print(" ")
+print(" ")
+print("c)") #Probabilidad de que se expriman mas de 3 manzanas, si la tasa es de 3 manzanas por minuto
+def factorial(x,n):
+	"""
+	Función recursiva que calcula el factorial
+	Tiene que recibir:
+		x=>El ultimo valor calculado
+		n=>El numero a multiplicar
+	"""
+	if(n>0):
+		# Se va llamando a ella misma mientras el valor sea superior a 0
+		x=factorial(x,n-1)
+		x=x*n
+	else:
+		x=1
+	return x
+
+def Poisson(tasa,z):
+    return ((2.71828**(-int(tasa)))*(int(tasa)**int(z)))/(factorial(1,int(z)))
+
+
+print("Defino mi variable Z: Se exprime una manzana y mi tasa=3 por minuto")
+print("Debo calcular la probabilidad de que Z sea mayor a 3, y para eso hago 1-P(Z<=3)")
+result=1-(Poisson(3,0)+Poisson(3,1)+Poisson(3,2)+Poisson(3,3))
+print("La probabilidad de que se expriman mas de 3 manzanas es de",round(result*100),"%")
+
+# Graficando Poisson
+mu =  3 # parametro de forma 
+poisson = stats.poisson(mu) # Distribución
+x = np.arange(poisson.ppf(0.01),
+              poisson.ppf(0.99))
+fmp = poisson.pmf(x) # Función de Masa de Probabilidad
+plt.plot(x, fmp, '--')
+plt.vlines(x, 0, fmp, colors='b', lw=5, alpha=0.5)
+plt.title('Distribución Poisson')
+plt.ylabel('probabilidad')
+plt.xlabel('valores')
+plt.show()
+
+
+
+
+
+print(" ")
+print(" ")
+print(" ")
 print("Parte II")
+
+
+
+
+
 
 
 
