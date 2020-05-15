@@ -10,23 +10,35 @@ import scipy.stats as ss
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import poisson, expon
-
 import csv
- 
+
+
+
+
+print("Pregunta 3")
 with open('esi_2017_personas_simplificada.csv', newline='') as File:  
     reader = csv.reader(File)
     for row in reader:
-        print(row)
-        
-print("Pregunta 3")
+        print(row) #Esto lee todas las lineas del archivo
+
+
+
+
+print("E[ingreso|edad]:")
+
+
+
+print("Gráfico semilogarítmico edad vs ingreso, con h(x)=E[ingreso|edad=x]")
+
+
+
+print("Categorías seleccionadas:--- ---")
+print("Gráfico de violín")
+
+print("Gráfico de caja y bigote")
 
 
 
 
 
-
-
-
-
-
-
+print("Conclusiones: ")
