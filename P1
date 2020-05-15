@@ -75,7 +75,7 @@ print("La probabilidad de que se expriman mas de 3 manzanas es de",round(result*
 print(" ")
 print(" ")
 print(" ")
-print("Parte II")
+
 
 
 
