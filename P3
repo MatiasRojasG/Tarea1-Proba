@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Thu May 14 23:29:59 2020
+
+@author: usuario
+"""
+
+import scipy.stats as ss
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import poisson, expon
+
+import csv
+ 
+with open('esi_2017_personas_simplificada.csv', newline='') as File:  
+    reader = csv.reader(File)
+    for row in reader:
+        print(row)
+        
+print("Pregunta 3")
+
+
+
+
+
+
+
+
+
+
+
