@@ -10,7 +10,39 @@ Created on Wed May 13 00:02:00 2020
 import scipy.stats as ss
 import numpy as np
 import matplotlib.pyplot as plt
+from numpy import random,linspace
 from scipy.stats import poisson, expon
+import scipy.stats as ss
+from math import e
+
+
+def factorial(x,n):
+	"""
+	Función recursiva que calcula el factorial
+	Tiene que recibir:
+		x=>El ultimo valor calculado
+		n=>El numero a multiplicar
+	"""
+	if(n>0):
+		# Se va llamando a ella misma mientras el valor sea superior a 0
+		x=factorial(x,n-1)
+		x=x*n
+	else:
+		x=1
+	return x
+
+def Poisson(tasa,z):
+    return ((e**(-int(tasa)))*(int(tasa)**int(z)))/(factorial(1,int(z)))
+
+def exponencial(tasa,x):
+    return 1-e**(-1*float(tasa)*float(x))
+
+def Binomial(cant,prob, x):
+    return ((factorial(1,float(cant)))/(factorial(1,float(x))*factorial(1, float(cant)-float(x))))*(float(prob)**float(x))*((1-float(prob))**(float(cant)-float(x)))
+
+
+
+
 print("Parte I")
 print("a)")
 X = ss.norm(25,2) #Funcion
@@ -29,7 +61,14 @@ plt.show()
 
 print(" ")
 print(" ")
-print("b)") #No entiendo el enunciado xd
+
+
+print("b)")
+
+print("La probabilidad de que la piña pese menos de 500gr (se venda), es de:")
+print(exponencial(1/800,500))
+print("La probabilidad de que de 10 piñas se vendan como maximo 3 es de: ")
+print(round(Binomial(10,0.46,3)*100),"%")
 
 
 
@@ -43,39 +82,13 @@ print("b)") #No entiendo el enunciado xd
 print(" ")
 print(" ")
 print("c)") #Probabilidad de que se expriman mas de 3 manzanas, si la tasa es de 3 manzanas por minuto
-def factorial(x,n):
-	"""
-	Función recursiva que calcula el factorial
-	Tiene que recibir:
-		x=>El ultimo valor calculado
-		n=>El numero a multiplicar
-	"""
-	if(n>0):
-		# Se va llamando a ella misma mientras el valor sea superior a 0
-		x=factorial(x,n-1)
-		x=x*n
-	else:
-		x=1
-	return x
 
-def Poisson(tasa,z):
-    return ((2.71828**(-int(tasa)))*(int(tasa)**int(z)))/(factorial(1,int(z)))
 
 
 print("Defino mi variable Z: Se exprime una manzana y mi tasa=3 por minuto")
 print("Debo calcular la probabilidad de que Z sea mayor a 3, y para eso hago 1-P(Z<=3)")
 result=1-(Poisson(3,0)+Poisson(3,1)+Poisson(3,2)+Poisson(3,3))
 print("La probabilidad de que se expriman mas de 3 manzanas es de",round(result*100),"%")
-
-
-
-
-
-
-print(" ")
-print(" ")
-print(" ")
-
 
 
 
