@@ -180,8 +180,6 @@ print("La esperanza de ingreso dado la edad, entre 81 y 106 años es de",E81y106
 
 
 
-
-
 #a=0
 #for i in valores:
 #    print(edad[a],"y",ingresos[a])
@@ -189,17 +187,5 @@ print("La esperanza de ingreso dado la edad, entre 81 y 106 años es de",E81y106
 
 #for i in range(0,10):
 #    print(i)
-
-
-
-
-
-
-
-
-
-
-
-
 
 
