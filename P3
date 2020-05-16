@@ -6,6 +6,8 @@ Created on Thu May 14 23:29:59 2020
 @author: usuario
 """
 
+
+print( "Pregunta 3" )
 import  csv
 valores=[]# aqui estaran todos los valores ordenados por listas.
 hogar=[]
@@ -24,7 +26,7 @@ horas=[]
 ingresos=[]
 f_pers=[]
 
-print( "Pregunta 3" )
+b=0
 with open("esi_2017_personas_simplificada.csv", newline="") as File:
     reader=csv.reader(File)
    
@@ -33,40 +35,171 @@ with open("esi_2017_personas_simplificada.csv", newline="") as File:
         break
     for row in reader:
         valores.append(row)#para leer valores 
+        b=b+1
+        if b==30:
+            break
+        
+        
+edadentre0y20=[]
+edadentre21y40=[]
+edadentre41y60=[]
+edadentre61y80=[]
+edadentre81y106=[]
+
+ingresoentre0y20=[]
+ingresoentre21y40=[]
+ingresoentre41y60=[]
+ingresoentre61y80=[]
+ingresoentre81y106=[]
+
 
 for i in valores:
-    hogar.append(float(i[0]))
-    region.append(float(i[1]))
-    comuna.append(float(i[2]))
-    persona.append(float(i[3]))
+    
+        
+
+    #hogar.append(float(i[0]))
+    #region.append(float(i[1]))
+    #comuna.append(float(i[2]))
+    #persona.append(float(i[3]))
     edad.append(float(i[4]))
-    parentesco.append(float(i[5]))
-    sexo.append(float(i[6]))
-    cine.append(float(i[7]))
-    proveedor.append(float(i[8]))
-    personas.append(float(i[9]))
-    menores_de_15.append(float(i[10]))
-    mayores_de_15.append(float(i[11]))
-    if i[12]==" ":
-        i[12]=0        
-    horas.append(float(i[12]))
+    #parentesco.append(float(i[5]))
+    #sexo.append(float(i[6]))
+    #cine.append(float(i[7]))
+    #proveedor.append(float(i[8]))
+    #personas.append(float(i[9]))
+    #menores_de_15.append(float(i[10]))
+    #mayores_de_15.append(float(i[11]))
+    #if i[12]==" ":
+      #  horas.append(0)
+    #else:
+     #   horas.append((float(i[12])))
     ingresos.append(float(i[13]))
-    f_pers.append(float(i[14]))
+    #f_pers.append(float(i[14]))
+for i in valores:
+    for u in range(0,21):
+        if int(i[4])==u:
+            edadentre0y20.append(float(i[4]))
+            ingresoentre0y20.append(float(i[13]))
+    for u in range(21,41):
+        if int(i[4])== u:
+            edadentre21y40.append(float(i[4]))
+            ingresoentre21y40.append(float(i[13]))
+    for u in range(41,61):
+        if int(i[4])== u:
+            edadentre41y60.append(float(i[4]))
+            ingresoentre41y60.append(float(i[13]))
+    for u in range(61,81):
+        if int(i[4])== u:
+            edadentre61y80.append(float(i[4]))
+            ingresoentre61y80.append(float(i[13]))
+    for u in range(81,107):
+        if int(i[4])== u:
+            edadentre81y106.append(float(i[4]))
+            ingresoentre81y106.append(float(i[13]))
 
-print("E[ingreso|edad]:")
+#    if int(i[4])== 4 or int(i[4])== 12:
+#        edadentre0y20.append(i[4])
+        
+        
+#print("Edades entre 0 y 20")
+#for i in edadentre0y20:
+#    print(i)
+#print(" ")
+#for i in ingresoentre0y20:
+#    print(i)
+
+#print(" ")
+#
+#print("Edades entre 21 y 40")
+#for i in edadentre21y40:
+#    print(i)
+#print("Ingresos entre 21 y 40 ")
+#for i in ingresoentre21y40:
+#    print(i)
+#
+#print(" ")
+#
+#print("Edades entre 41 y 60")
+#for i in edadentre41y60:
+#    print(i)
+#print(" ")
+#for i in ingresoentre41y60:
+#    print(i)
+#
+#print(" ")
+#
+#print("Edades entre 61 y 80")
+#for i in edadentre61y80:
+#    print(i)
+#print(" ")
+#for i in ingresoentre61y80:
+#    print(i)
 
 
-print("Gráfico semilogarítmico edad vs ingreso, con h(x)=E[ingreso|edad=x]")
+#print("Edades entre 81 y 106")
+#for i in edadentre81y106:
+#    print(i)
+#for i in ingresoentre81y106:
+#    print(i)
+#print(" ")
+    
+    
+    
+sa=0
+for a in ingresoentre0y20:
+    a=a+int(a)
+
+E0y20=int(sa/int(len(ingresoentre0y20)))
+print("La esperanza de ingreso dado la edad, entre 0 y 20 años es de",E0y20)
+
+sb=0
+for b in ingresoentre21y40:
+    sb=sb+int(b)
+
+E21y40=int(sb/int(len(ingresoentre21y40)))
+print("La esperanza de ingreso dado la edad, entre 21 y 40 años es de",E21y40)
+
+sc=0
+for c in ingresoentre41y60:
+    sc=sc+int(c)
+E41y60=int(sc/int(len(ingresoentre41y60)))
+print("La esperanza de ingreso dado la edad, entre 41 y 60 años es de",E41y60)
+
+sd=0
+for d in ingresoentre61y80:
+    sd=sd+int(d)
+E61y80=int(sd/int(len(ingresoentre61y80)))
+print("La esperanza de ingreso dado la edad, entre 61 y 80 años es de",E61y80)
+
+se=0
+for e in ingresoentre81y106:
+    se=se+int(e)
+E81y106=int(se/int(len(ingresoentre81y106)))
+print("La esperanza de ingreso dado la edad, entre 81 y 106 años es de",E81y106)
 
 
 
-print("Categorías seleccionadas:--- ---")
-print("Gráfico de violín")
-
-print("Gráfico de caja y bigote")
 
 
 
+#a=0
+#for i in valores:
+#    print(edad[a],"y",ingresos[a])
+#    a=a+1
+
+#for i in range(0,10):
+#    print(i)
 
 
-print("Conclusiones: ")
+
+
+
+
+
+
+
+
+
+
+
+
