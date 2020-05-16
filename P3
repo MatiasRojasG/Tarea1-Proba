@@ -6,26 +6,54 @@ Created on Thu May 14 23:29:59 2020
 @author: usuario
 """
 
-import scipy.stats as ss
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.stats import poisson, expon
-import csv
+import  csv
+valores=[]# aqui estaran todos los valores ordenados por listas.
+hogar=[]
+region=[]
+comuna=[]
+persona=[]
+edad=[]
+parentesco=[]
+sexo=[]
+cine=[]
+proveedor=[]
+personas=[]
+menores_de_15=[]
+mayores_de_15=[]
+horas=[]
+ingresos=[]
+f_pers=[]
 
-
-
-
-print("Pregunta 3")
-with open('esi_2017_personas_simplificada.csv', newline='') as File:  
-    reader = csv.reader(File)
+print( "Pregunta 3" )
+with open("esi_2017_personas_simplificada.csv", newline="") as File:
+    reader=csv.reader(File)
+   
     for row in reader:
-        print(row) #Esto lee todas las lineas del archivo
+        titulos=(row)#Todos los titulos que aparecen en el excel
+        break
+    for row in reader:
+        valores.append(row)#para leer valores 
 
-
-
+for i in valores:
+    hogar.append(float(i[0]))
+    region.append(float(i[1]))
+    comuna.append(float(i[2]))
+    persona.append(float(i[3]))
+    edad.append(float(i[4]))
+    parentesco.append(float(i[5]))
+    sexo.append(float(i[6]))
+    cine.append(float(i[7]))
+    proveedor.append(float(i[8]))
+    personas.append(float(i[9]))
+    menores_de_15.append(float(i[10]))
+    mayores_de_15.append(float(i[11]))
+    if i[12]==" ":
+        i[12]=0        
+    horas.append(float(i[12]))
+    ingresos.append(float(i[13]))
+    f_pers.append(float(i[14]))
 
 print("E[ingreso|edad]:")
-
 
 
 print("Gráfico semilogarítmico edad vs ingreso, con h(x)=E[ingreso|edad=x]")
