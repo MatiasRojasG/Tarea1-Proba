@@ -1,22 +1,11 @@
 from matplotlib import pyplot
 import  csv
-valores=[]# aqui estaran todos los valores ordenados por listas.
-hogar=[]
-region=[]
-comuna=[]
-persona=[]
-edad=[]
-parentesco=[]
-sexo=[]
-cine=[]
-proveedor=[]
-personas=[]
-menores_de_15=[]
-mayores_de_15=[]
-horas=[]
-ingresos=[]
-f_pers=[]
 
+valores=[]# aqui estaran todos los valores ordenados por listas.
+region=[]
+edad=[]
+ingresos=[]
+ingresosR=[]#Se usara para ordenar segun las regiones
 b=0
 print( "Pregunta 3" )
 with open("esi_2017_personas_simplificada.csv", newline="") as File:
@@ -28,41 +17,21 @@ with open("esi_2017_personas_simplificada.csv", newline="") as File:
     for row in reader:
         valores.append(row)#para leer valores 
         b=b+1
-        if b==20:
-            break
+        
         
 
 for i in valores:
-    
-        
-
-    #hogar.append(float(i[0]))
-    #region.append(float(i[1]))
-    #comuna.append(float(i[2]))
-    #persona.append(float(i[3]))
-    edad.append(float(i[4]))
-    #parentesco.append(float(i[5]))
-    #sexo.append(float(i[6]))
-    #cine.append(float(i[7]))
-    #proveedor.append(float(i[8]))
-    #personas.append(float(i[9]))
-    #menores_de_15.append(float(i[10]))
-    #mayores_de_15.append(float(i[11]))
-    #if i[12]==" ":
-      #  horas.append(0)
-    #else:
-     #   horas.append((float(i[12])))
+    region.append(float(i[1]))    
+    edad.append(float(i[4]))    
     ingresos.append(float(i[13]))
-    #f_pers.append(float(i[14]))
-edadOrden=[]
-ingOrden=[]
+    ingresosR.append(float(i[13]))
+    
+edadOrden=[]#edad ordenadas de menor a mayor
+ingOrden=[]#ingresos ordenados segun lista de edadOrden
+
 espIng=[]
 espEdad=[]
-#a=0
 
-#for i in valores:
-    #print(edad[a],"y",ingresos[a])
-    #a=a+1
 maximo=max(edad)
 minimo=min(edad)
 
@@ -84,19 +53,76 @@ while minimo<=maximo:
         esp2= esp/ed2
     else:
         esp2=0
-    print("La esperanza de ingreso de la edad",minimo,"es",esp2)
+    #print("La esperanza de ingreso de la edad",minimo,"es",esp2)
     espEdad.append(minimo)
     espIng.append(esp2)
     minimo=minimo+1
 #print(espEdad)#para hacer graficos
 #print(espIng)#Para hacer graficos
+
+pyplot.title("Gráfico Edad vs Ingreso")
 pyplot.plot (espEdad)
-pyplot.xlabel("Edad de choro")
+pyplot.xlabel("Edad")
 pyplot.plot(espIng)
 pyplot.ylabel("Esperanza de Ingresos")
 pyplot.show()
+# Eje X lineal, eje Y logarítmico
+
+#Gráfico Semilogarítmico PARTE2
+print(" ")
+pyplot.title("Gráfico Semilogaritmico Edad vs Ingreso")
+
+pyplot.grid(True, which="both")
+pyplot.xlabel("Edad")
+pyplot.semilogy(espEdad, espIng)
+
+pyplot.ylabel("Esperanza de Ingresos")
+pyplot.show()
+
+#REGIONES A ANALIZAR #4(Coquimmbo) #5(valparaiso) #6(Ohiggins) #7(Maules) #9(Araucania)
+regionesNom=["Coquimmbo","Valparaiso", "O'higgins", "Maule", "Araucania"]
+regionesNum=[4.0,5.0,6.0,7.0,9.0]
+regionOrden=[]
+ingresosOrdenRegion=[]
+espIngR=[]
+listaR=[[],[],[],[],[]]
+for i in regionesNum:
+    xd=regionesNum.index(i)
+    suma=0
+    rn=region.count(i)
+    rn2=region.count(i)
+    while rn>0:
+        posi=region.index(i)
+        regionOrden.append(region[posi])
+        region.pop(posi)
+        #suma=suma+ingresosR[posi]#Aqui se sumaran los ingresos de todas las regioness iguales.
+        ingresosOrdenRegion.append(ingresosR[posi])
+        listaR[xd].append(ingresosR[posi])
+        ingresosR.pop(posi)
+        
+        rn=rn-1
+    
+    if rn2!=0:
+        promedio= suma/rn2
+    else:
+        promedio=0  
+    
+    espIngR.append(promedio)
 
 
+print(ingresosOrdenRegion)
+#for i in regionesNom:
+ #   rr=regionesNom.index(i)
+  #  print("La region numero",int(regionesNum[rr]),"que corresponde a la de",i,"tiene una esperanza de ingreso de ",espIngR[rr])
+
+
+
+pyplot.ion()  # Nos ponemos en modo interactivo
+
+    
+pyplot.boxplot(listaR, sym = 'ko', whis = 1.5)  # El valor por defecto para los bigotes es 1.5*IQR pero lo escribimos explícitamente
+pyplot.xticks([1,2,3,4,5], ['Coquimbo', 'Valparaiso', "Ohiggins","Maule","Araucania"], size = 'small', color = 'k')  # Colocamos las etiquetas para cada distribución
+pyplot.ylabel('Ingresos x10**7')
 
 
 
