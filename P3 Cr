@@ -17,6 +17,8 @@ with open("esi_2017_personas_simplificada.csv", newline="") as File:
     for row in reader:
         valores.append(row)#para leer valores 
         b=b+1
+        #if b==6000:
+         #   break
         
         
 
@@ -57,8 +59,7 @@ while minimo<=maximo:
     espEdad.append(minimo)
     espIng.append(esp2)
     minimo=minimo+1
-#print(espEdad)#para hacer graficos
-#print(espIng)#Para hacer graficos
+
 
 pyplot.title("Gráfico Edad vs Ingreso")
 pyplot.plot (espEdad)
@@ -102,15 +103,15 @@ for i in regionesNum:
         
         rn=rn-1
     
-    if rn2!=0:
-        promedio= suma/rn2
-    else:
-        promedio=0  
+   # if rn2!=0:
+    #    promedio= suma/rn2
+    #else:
+     #   promedio=0  
     
-    espIngR.append(promedio)
+   # espIngR.append(promedio)
 
 
-print(ingresosOrdenRegion)
+#print(ingresosOrdenRegion)
 #for i in regionesNom:
  #   rr=regionesNom.index(i)
   #  print("La region numero",int(regionesNum[rr]),"que corresponde a la de",i,"tiene una esperanza de ingreso de ",espIngR[rr])
@@ -119,12 +120,21 @@ print(ingresosOrdenRegion)
 
 pyplot.ion()  # Nos ponemos en modo interactivo
 
-    
+#print(listaR)    
 pyplot.boxplot(listaR, sym = 'ko', whis = 1.5)  # El valor por defecto para los bigotes es 1.5*IQR pero lo escribimos explícitamente
 pyplot.xticks([1,2,3,4,5], ['Coquimbo', 'Valparaiso', "Ohiggins","Maule","Araucania"], size = 'small', color = 'k')  # Colocamos las etiquetas para cada distribución
 pyplot.ylabel('Ingresos x10**7')
+pyplot.xlabel("Regiones")
+pyplot.title("Gráfico de caja de Región vs Ingreso")
+pyplot.show()        
 
-
+x=[[1,3,4],[2,4,5],3,4]        
+pyplot.violinplot(listaR)
+pyplot.xticks([1,2,3,4,5], ['Coquimbo', 'Valparaiso', "Ohiggins","Maule","Araucania"], size = 'small', color = 'k')
+pyplot.ylabel('Ingresos x10**7')
+pyplot.xlabel("Regiones")
+pyplot.title("Gráfico de violin de Región vs Ingreso")
+pyplot.show()
 
 
 
